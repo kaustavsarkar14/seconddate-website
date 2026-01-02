@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import Lenis from "lenis";
 
-function App() {
+import Hero from "./components/Hero";
+import AppPreview from "./components/AppPreview";
+import Features from "./components/Features";
+import CTA from "./components/CTA";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+
+const App = () => {
+  useEffect(() => {
+    const lenis = new Lenis({
+      smooth: true,
+      lerp: 0.08,
+    });
+
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Hero />
+      <AppPreview />
+      <Features />
+      <CTA />
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
