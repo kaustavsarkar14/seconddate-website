@@ -1,53 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-html,
-body {
-  font-family: "Inter", sans-serif;
-  background: #0b0b0f;
-  color: white;
-  overflow-x: hidden;
-}
-
-.gradient-bg {
-  background: linear-gradient(
-    135deg,
-    #ff5f9e,
-    #ff7a6e,
-    #ff9f43
-  );
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-button {
-  border: none;
-  cursor: pointer;
-}
-@media (max-width: 768px) {
-  .hero-grid {
-    grid-template-columns: 1fr !important;
-    gap: 36px;
+@layer base {
+  html {
+    font-family: "Inter", sans-serif;
+    @apply bg-[#0b0b0f] text-white overflow-x-hidden;
   }
+}
 
-  .hero-text {
-    text-align: center;
-    order: 1;
+@layer utilities {
+  .gradient-bg {
+    background: linear-gradient(135deg, #ff5f9e, #ff7a6e, #ff9f43);
   }
-
-  .hero-cards {
-    order: 2;
-    display: flex;
-    justify-content: center;  }
+  
+  /* Optional: Utility for hiding scrollbars if needed later */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

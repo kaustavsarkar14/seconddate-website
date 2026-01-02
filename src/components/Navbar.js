@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.png"; // Ensure this path is correct
 
 const Navbar = () => {
   return (
@@ -7,49 +7,17 @@ const Navbar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        padding: "14px 16px", // ⬅️ reduced a lot
-        zIndex: 10,
-      }}
+      className="absolute top-0 left-0 w-full z-20 px-4 py-4 md:py-6"
     >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
         {/* BRAND */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-          }}
-        >
+        <div className="flex items-center gap-2.5">
           <img
             src={logo}
             alt="SecondDate"
-            style={{
-              width: 44, // ⬅️ bigger logo
-              height: 44,
-            }}
+            className="w-10 h-10 md:w-11 md:h-11 object-contain"
           />
-
-          <span
-            style={{
-              fontSize: "1.3rem", // ⬅️ bigger text
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              color: "#fff", // important for gradient bg
-            }}
-          >
+          <span className="text-xl md:text-2xl font-extrabold tracking-tight text-white hidden md:inline-block">
             SecondDate
           </span>
         </div>
@@ -57,16 +25,7 @@ const Navbar = () => {
         {/* CTA */}
         <a
           href="#download"
-          style={{
-            fontWeight: 600,
-            fontSize: "0.85rem",
-            textDecoration: "none",
-            color: "#000",
-            background: "#fff",
-            padding: "8px 16px", // ⬅️ slimmer button
-            borderRadius: 999,
-            whiteSpace: "nowrap",
-          }}
+          className="bg-white text-black px-5 py-2 md:px-6 md:py-2.5 rounded-full font-semibold text-sm transition-transform hover:scale-105 active:scale-95"
         >
           Download
         </a>

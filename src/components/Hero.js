@@ -3,45 +3,17 @@ import HeroCards from "./HeroCards";
 
 const Hero = () => {
   return (
-    <section
-      className="gradient-bg"
-      style={{
-        minHeight: "100vh",
-        paddingTop: 96, // space for navbar
-        paddingBottom: 64,
-      }}
-    >
-      <div
-        className="hero-container"
-        style={{
-          maxWidth: 420, // 🔥 key fix
-          margin: "0 auto",
-          padding: "0 16px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-          gap: 28,
-        }}
-      >
-        {/* TEXT FIRST (important for mobile reorder) */}
+    <section className="relative w-full min-h-screen gradient-bg pt-20 pb-12 md:pt-32 md:pb-20 flex items-center overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        
+        {/* TEXT CONTENT */}
         <motion.div
-          className="hero-text"
-          initial={{ opacity: 0, y: 40 }}
+          className="flex flex-col items-center md:items-start text-center md:text-left z-10"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          style={{
-            maxWidth: 520,
-            color: "#fff",
-          }}
         >
-          <h1
-            style={{
-              fontSize: "clamp(2.4rem, 7vw, 4rem)",
-              fontWeight: 800,
-              lineHeight: 1.05,
-            }}
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.1] text-white tracking-tight">
             Second dates
             <br />
             shouldn’t feel
@@ -49,38 +21,22 @@ const Hero = () => {
             awkward.
           </h1>
 
-          <p
-            style={{
-              marginTop: 18,
-              fontSize: "1.05rem",
-              opacity: 0.9,
-              lineHeight: 1.6,
-            }}
-          >
+          <p className="mt-4 md:mt-6 text-base md:text-xl text-white/90 font-medium max-w-sm md:max-w-md leading-relaxed">
             A dating app built for real conversations and genuine connections.
           </p>
 
           <motion.a
-            whileHover={{ scale: 1.06 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#download"
-            style={{
-              display: "inline-block",
-              marginTop: 28,
-              padding: "16px 36px",
-              borderRadius: 999,
-              background: "#000",
-              color: "#fff",
-              fontWeight: 600,
-              textDecoration: "none",
-            }}
+            className="inline-block mt-6 md:mt-8 px-8 py-3.5 bg-black text-white rounded-full font-semibold text-base md:text-lg shadow-xl hover:bg-gray-900 transition-colors"
           >
             Download Now
           </motion.a>
         </motion.div>
 
-        {/* CARDS SECOND */}
-        <div className="hero-cards">
+        {/* CARDS SECTION - Adjusted height/margins for mobile visibility */}
+        <div className="flex justify-center md:justify-end items-center relative z-10 mt-6 md:mt-0 min-h-[400px] md:min-h-auto">
           <HeroCards />
         </div>
       </div>

@@ -1,101 +1,77 @@
 import { motion } from "framer-motion";
 
 const HeroCard = ({ user, index }) => {
+  const isFront = index === 0;
+  const isSecond = index === 1;
+
+  // 1. Generate a "random" but stable tilt based on the User ID.
+  // This ensures each specific card has its own unique tilt personality.
+  // "Aanya" might tilt -3deg, "Rohan" might tilt +2deg.
+  const uniqueTilt = (user.id * 17) % 10 - 5; // Generates a number between -5 and 5
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.15 }}
-      whileHover={{
-        y: -16,
-        rotate: index === 0 ? -2 : index === 1 ? 2 : -1,
+      layout
+      initial={{ opacity: 0, y: 100, scale: 0.8 }}
+      animate={{
+        opacity: isFront ? 1 : isSecond ? 0.7 : 0.4,
+        y: isFront ? 0 : isSecond ? 15 : 30,
+        scale: isFront ? 1 : isSecond ? 0.96 : 0.92,
+        zIndex: 3 - index,
+        
+        // 2. Apply the dynamic tilt
+        // Front card gets the full unique tilt
+        // Second card tilts slightly opposite to create a messy stack look
+        // Third card is subtle
+        rotate: isFront 
+          ? uniqueTilt 
+          : isSecond 
+            ? -uniqueTilt / 2  
+            : uniqueTilt / 4, 
       }}
-      style={{
-        position: "absolute",
-        width: 260,
-        height: 420,
-        background: "#fff",
-        borderRadius: 22,
-        overflow: "hidden",
-        boxShadow: "0 20px 50px rgba(0,0,0,0.18)",
-        transform: `rotate(${index === 0 ? -6 : index === 1 ? 4 : -2}deg)`,
+      transition={{
+        opacity: { duration: 0.4 },
+        y: { type: "spring", stiffness: 150, damping: 18 }, // Snappy vertical move
+        scale: { duration: 0.4 },
+        rotate: { type: "spring", stiffness: 200, damping: 20 }, // 3. Springy rotation
+        layout: { duration: 0.4 }
       }}
+      // Mobile: 240px width, 340px height | Desktop: 280px width, 440px height
+      className="absolute top-0 left-0 w-[240px] h-[340px] md:w-[280px] md:h-[440px] bg-white rounded-3xl overflow-hidden shadow-2xl origin-bottom border border-white/20"
     >
-      {/* MEDIA (image placeholder) */}
+      {/* MEDIA */}
       <div
-        style={{
-          height: "55%",
-          backgroundImage: `url(${user.image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="h-[55%] w-full bg-cover bg-center"
+        style={{ backgroundImage: `url(${user.image})` }}
       />
 
-      {/* META */}
-      <div style={{ padding: 14 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              fontSize: 22,
-              fontWeight: 800,
-              color: "#111",
-            }}
-          >
-            {user.name}, {user.age}
+      {/* META INFO */}
+      <div className="p-4 flex flex-col h-[45%] justify-between">
+        <div>
+          {/* Name & Swipes */}
+          <div className="flex justify-between items-center mb-1">
+            <h3 className="text-lg md:text-xl font-extrabold text-gray-900">
+              {user.name}, {user.age}
+            </h3>
+            <span className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wide">
+              {user.swipes} Swipes
+            </span>
           </div>
 
-          <div
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: "#888",
-            }}
-          >
-            Swipes: {user.swipes}
+          {/* Demographics */}
+          <div className="flex gap-2 text-xs md:text-sm text-gray-500 font-medium mb-3">
+            <span>{user.gender}</span>
+            <span>•</span>
+            <span>{user.religion}</span>
           </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            marginTop: 6,
-            fontSize: 14,
-            color: "#444",
-            flexWrap: "wrap",
-          }}
-        >
-          <span>{user.gender}</span>
-          <span>•</span>
-          <span>{user.religion}</span>
         </div>
 
         {/* INTERESTS */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 8,
-            marginTop: 14,
-          }}
-        >
+        <div className="flex flex-wrap gap-1.5 md:gap-2 content-start">
           {user.interests.map((interest, i) => (
             <div
               key={i}
-              style={{
-                padding: "6px 12px",
-                borderRadius: 20,
-                background: "#f5f5f5",
-                border: "1px solid #e3e3e3",
-                fontSize: 13,
-                color: "#444",
-              }}
+              className="px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-gray-50 border border-gray-100 text-[10px] md:text-xs font-semibold text-gray-600"
             >
               {interest}
             </div>
