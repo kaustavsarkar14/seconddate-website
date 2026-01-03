@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import feed from "../assets/feed.png"; // adjust path if needed
 
 const AppPreview = () => {
   return (
@@ -6,27 +7,61 @@ const AppPreview = () => {
       style={{
         padding: "6rem 1.5rem",
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "2.5rem",
       }}
     >
-      <motion.div
-        className="glass"
-        initial={{ opacity: 0, y: 60 }}
+      {/* Title */}
+      <motion.h2
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        transition={{
+          duration: 0.9,
+          ease: [0.16, 1, 0.3, 1],
+        }}
         style={{
-          width: 280,
-          height: 560,
-          borderRadius: 40,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#aaa",
+          fontSize: "clamp(2rem, 4vw, 3rem)",
+          fontWeight: 600,
+          letterSpacing: "-0.02em",
+          color: "#fff",
+          textAlign: "center",
         }}
       >
-        App UI Preview
-      </motion.div>
+        Build real connections
+      </motion.h2>
+
+      {/* App Preview Image */}
+      <motion.img
+        src={feed}
+        alt="App UI Preview"
+        initial={{
+          opacity: 0,
+          y: 80,
+          scale: 0.92,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+        }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 1.1, // keep image faster than before
+          delay: 0.15,   // subtle stagger after text
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        whileHover={{
+          y: -6,
+        }}
+        style={{
+          width: 280,
+          height: "auto",
+          borderRadius: 24,
+          boxShadow: "0 40px 90px rgba(0,0,0,0.35)",
+        }}
+      />
     </section>
   );
 };
