@@ -6,29 +6,44 @@ const HeroCard = ({ user, index }) => {
 
   const isFront = index === 0;
   const isSecond = index === 1;
+  
+  // LOGIC: Only the first 2 cards are "visible".
+  // The rest are hidden to prevent shadow stacking and performance drain.
+  const isVisible = index <= 1;
+  
   const uniqueTilt = (user.id * 17) % 10 - 5;
 
-  // Force play on mount (extra safety for Safari / iOS)
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      if (isVisible) {
+        // Play video only if card is visible
+        videoRef.current.play().catch((e) => {
+          // Handle auto-play restrictions silently
+        });
+      } else {
+        // Pause video immediately if card goes to back of stack
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0; // Optional: Reset video
+      }
     }
-  }, []);
+  }, [isVisible]);
 
   return (
     <motion.div
       layout
       initial={{ opacity: 0, y: 100, scale: 0.8 }}
       animate={{
-        opacity: isFront ? 1 : isSecond ? 0.7 : 0.4,
+        // FIX: Opacity is 0 for anything behind the 2nd card
+        opacity: isFront ? 1 : isSecond ? 0.7 : 0,
         y: isFront ? 0 : isSecond ? 15 : 30,
         scale: isFront ? 1 : isSecond ? 0.96 : 0.92,
-        zIndex: 3 - index,
+        // Z-Index ensures the front card is always physically on top
+        zIndex: 10 - index, 
         rotate: isFront
           ? uniqueTilt
           : isSecond
           ? -uniqueTilt / 2
-          : uniqueTilt / 4,
+          : 0, // Don't rotate hidden cards
       }}
       transition={{
         opacity: { duration: 0.4 },
@@ -37,6 +52,8 @@ const HeroCard = ({ user, index }) => {
         rotate: { type: "spring", stiffness: 200, damping: 20 },
         layout: { duration: 0.4 },
       }}
+      // Optimization: Disable clicks/interaction on cards that are not front
+      style={{ pointerEvents: isFront ? "auto" : "none" }}
       className="absolute top-0 left-0
         w-[240px] h-[340px]
         md:w-[320px] md:h-[480px]
@@ -49,7 +66,6 @@ const HeroCard = ({ user, index }) => {
         <video
           ref={videoRef}
           src={user.video}
-          autoPlay
           muted
           loop
           playsInline

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import HeroCard from "./HeroCard";
 
+// FIX: Unique IDs for all users to prevent React rendering errors
 const initialUsers = [
   {
     id: 1,
@@ -17,7 +18,7 @@ const initialUsers = [
     id: 2,
     name: "Arijit",
     age: 25,
-    gender: "Female",
+    gender: "Male",
     religion: "Christian",
     swipes: 142,
     video: require("../assets/videos/boy_1.mp4"),
@@ -44,7 +45,7 @@ const initialUsers = [
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
   {
-    id: 3,
+    id: 5, // Fixed ID (was 3)
     name: "Selina",
     age: 20,
     gender: "Female",
@@ -54,7 +55,7 @@ const initialUsers = [
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
-    id: 4,
+    id: 6, // Fixed ID (was 4)
     name: "Anirban",
     age: 20,
     gender: "Male",
@@ -69,8 +70,12 @@ const HeroCards = () => {
   const [users, setUsers] = useState(initialUsers);
 
   useEffect(() => {
-    const startTimeout = setTimeout(() => {
-      const interval = setInterval(() => {
+    let intervalId;
+    let timeoutId;
+
+    // Start the rotation loop after 2 seconds
+    timeoutId = setTimeout(() => {
+      intervalId = setInterval(() => {
         setUsers((prevUsers) => {
           const newArray = [...prevUsers];
           const firstItem = newArray.shift();
@@ -78,19 +83,21 @@ const HeroCards = () => {
           return newArray;
         });
       }, 4000);
-
-      return () => clearInterval(interval);
     }, 2000);
 
-    return () => clearTimeout(startTimeout);
+    // FIX: Cleanup function ensures timers stop when component unmounts
+    // This prevents the "lag after long time" issue.
+    return () => {
+      clearTimeout(timeoutId);
+      if (intervalId) clearInterval(intervalId);
+    };
   }, []);
 
   return (
     <motion.div
-      // Mobile: 240x380 | Desktop (md): 320x520 | Large Desktop (lg): 380x600
       className="relative w-[240px] h-[380px] md:w-[320px] md:h-[520px] lg:w-[380px] lg:h-[600px]"
       animate={{
-        y: [0, -20, 0], // Increased float range slightly for larger size
+        y: [0, -20, 0],
       }}
       transition={{
         duration: 6,
