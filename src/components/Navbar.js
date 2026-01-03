@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { PLAY_STORE_URL } from "../constants";
 
@@ -12,18 +13,18 @@ const Navbar = () => {
       className="absolute top-0 left-0 w-full z-20 px-4 py-4 md:py-6"
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center">
-        {/* BRAND */}
-        <div className="flex items-center gap-2.5">
+        
+        {/* BRAND → HOME */}
+        <Link to="/" className="flex items-center gap-2.5">
           <img
             src={logo}
             alt="SecondDate"
             className="w-10 h-10 md:w-11 md:h-11 object-contain"
           />
-          {/* now visible on mobile */}
           <span className="text-lg md:text-2xl font-extrabold tracking-tight text-white">
             SecondDate
           </span>
-        </div>
+        </Link>
 
         {/* DOWNLOAD ICON */}
         <a
