@@ -1,11 +1,20 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const HeroCard = ({ user, index }) => {
+  const videoRef = useRef(null);
+
   const isFront = index === 0;
   const isSecond = index === 1;
-
   const uniqueTilt = (user.id * 17) % 10 - 5;
-  
+
+  // Force play on mount (extra safety for Safari / iOS)
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <motion.div
       layout
@@ -15,36 +24,43 @@ const HeroCard = ({ user, index }) => {
         y: isFront ? 0 : isSecond ? 15 : 30,
         scale: isFront ? 1 : isSecond ? 0.96 : 0.92,
         zIndex: 3 - index,
-        rotate: isFront 
-          ? uniqueTilt 
-          : isSecond 
-            ? -uniqueTilt / 2  
-            : uniqueTilt / 4, 
+        rotate: isFront
+          ? uniqueTilt
+          : isSecond
+          ? -uniqueTilt / 2
+          : uniqueTilt / 4,
       }}
       transition={{
         opacity: { duration: 0.4 },
         y: { type: "spring", stiffness: 150, damping: 18 },
         scale: { duration: 0.4 },
         rotate: { type: "spring", stiffness: 200, damping: 20 },
-        layout: { duration: 0.4 }
+        layout: { duration: 0.4 },
       }}
-      // Dimensions: Mobile -> Tablet -> Desktop
-      className="absolute top-0 left-0 
-                 w-[240px] h-[340px] 
-                 md:w-[320px] md:h-[480px] 
-                 lg:w-[380px] lg:h-[540px] 
-                 bg-white rounded-3xl overflow-hidden shadow-2xl origin-bottom border border-white/20"
+      className="absolute top-0 left-0
+        w-[240px] h-[340px]
+        md:w-[320px] md:h-[480px]
+        lg:w-[380px] lg:h-[540px]
+        bg-white rounded-3xl overflow-hidden shadow-2xl
+        origin-bottom border border-white/20"
     >
-      {/* MEDIA */}
-      <div
-        className="h-[55%] w-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${user.image})` }}
-      />
+      {/* VIDEO */}
+      <div className="relative h-[55%] w-full overflow-hidden">
+        <video
+          ref={videoRef}
+          src={user.video}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
 
       {/* META INFO */}
       <div className="p-4 md:p-6 lg:p-7 flex flex-col h-[45%] justify-between">
         <div>
-          {/* Name & Swipes */}
           <div className="flex justify-between items-center mb-1 md:mb-2">
             <h3 className="text-lg md:text-2xl lg:text-3xl font-extrabold text-gray-900">
               {user.name}, {user.age}
@@ -54,7 +70,6 @@ const HeroCard = ({ user, index }) => {
             </span>
           </div>
 
-          {/* Demographics */}
           <div className="flex gap-2 text-xs md:text-sm lg:text-base text-gray-500 font-medium mb-3 md:mb-4">
             <span>{user.gender}</span>
             <span>•</span>
@@ -67,7 +82,9 @@ const HeroCard = ({ user, index }) => {
           {user.interests.map((interest, i) => (
             <div
               key={i}
-              className="px-2.5 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 rounded-full bg-gray-50 border border-gray-100 text-[10px] md:text-xs lg:text-sm font-semibold text-gray-600"
+              className="px-2.5 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2
+              rounded-full bg-gray-50 border border-gray-100
+              text-[10px] md:text-xs lg:text-sm font-semibold text-gray-600"
             >
               {interest}
             </div>
