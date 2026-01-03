@@ -4,6 +4,7 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
         fontSize: "0.85rem",
       }}
     >
-      {/* Social icons */}
+      {/* Social icons (external) */}
       <div
         style={{
           display: "flex",
@@ -41,7 +42,7 @@ const Footer = () => {
         </SocialIcon>
       </div>
 
-      {/* Links */}
+      {/* Internal links (React Router) */}
       <div
         style={{
           display: "flex",
@@ -50,15 +51,17 @@ const Footer = () => {
           marginBottom: "1.2rem",
         }}
       >
-        <a href="/privacy-policy" style={linkStyle}>
+        <Link to="/privacy-policy" style={linkStyle}>
           Privacy Policy
-        </a>
-        <a href="/terms" style={linkStyle}>
+        </Link>
+
+        <Link to="/terms" style={linkStyle}>
           Terms & Conditions
-        </a>
-        <a href="/contact" style={linkStyle}>
+        </Link>
+
+        <Link to="/contact" style={linkStyle}>
           Contact Us
-        </a>
+        </Link>
       </div>
 
       {/* Copyright */}

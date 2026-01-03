@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { PLAY_STORE_URL } from "../constants";
 
 const CTA = () => {
   return (
@@ -21,7 +22,7 @@ const CTA = () => {
       <motion.a
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        href="https://play.google.com/store/apps/details?id=your.app.id"
+        href={PLAY_STORE_URL}
         style={{
           display: "inline-block",
           marginTop: 30,

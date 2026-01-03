@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import AppPreview from "./components/AppPreview";
-import Features from "./components/Features";
-import CTA from "./components/CTA";
 import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
+import Contact from "./pages/Contact";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   useEffect(() => {
@@ -21,17 +24,26 @@ const App = () => {
     };
 
     requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
   }, []);
 
   return (
-    <main className="w-full relative">
-      <Navbar />
-      <Hero />
-      <AppPreview />
-      <Features />
-      <CTA />
-      <Footer />
-    </main>
+    <BrowserRouter>
+      <ScrollToTop />
+      <main className="w-full relative">
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+
+        <Footer />
+      </main>
+    </BrowserRouter>
   );
 };
 

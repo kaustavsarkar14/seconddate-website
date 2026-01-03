@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import logo from "../assets/logo.png"; // Ensure this path is correct
+import { Download } from "lucide-react";
+import logo from "../assets/logo.png";
+import { PLAY_STORE_URL } from "../constants";
 
 const Navbar = () => {
   return (
@@ -17,17 +19,19 @@ const Navbar = () => {
             alt="SecondDate"
             className="w-10 h-10 md:w-11 md:h-11 object-contain"
           />
-          <span className="text-xl md:text-2xl font-extrabold tracking-tight text-white hidden md:inline-block">
+          {/* now visible on mobile */}
+          <span className="text-lg md:text-2xl font-extrabold tracking-tight text-white">
             SecondDate
           </span>
         </div>
 
-        {/* CTA */}
+        {/* DOWNLOAD ICON */}
         <a
-          href="#download"
-          className="bg-white text-black px-5 py-2 md:px-6 md:py-2.5 rounded-full font-semibold text-sm transition-transform hover:scale-105 active:scale-95"
+          href={PLAY_STORE_URL}
+          aria-label="Download App"
+          className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white text-black flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
         >
-          Download
+          <Download size={20} />
         </a>
       </div>
     </motion.nav>
