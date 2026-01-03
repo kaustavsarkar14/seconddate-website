@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import HeroCard from "./HeroCard";
 
-// FIX: Unique IDs for all users to prevent React rendering errors
 const initialUsers = [
   {
     id: 1,
@@ -45,7 +44,7 @@ const initialUsers = [
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
   {
-    id: 5, // Fixed ID (was 3)
+    id: 5,
     name: "Selina",
     age: 20,
     gender: "Female",
@@ -55,7 +54,7 @@ const initialUsers = [
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
-    id: 6, // Fixed ID (was 4)
+    id: 6,
     name: "Anirban",
     age: 20,
     gender: "Male",
@@ -69,36 +68,28 @@ const initialUsers = [
 const HeroCards = () => {
   const [users, setUsers] = useState(initialUsers);
 
+  const rotateCards = () => {
+    setUsers((prev) => {
+      const next = [...prev];
+      const first = next.shift();
+      next.push(first);
+      return next;
+    });
+  };
+
+  // Optional auto rotation
   useEffect(() => {
-    let intervalId;
-    let timeoutId;
-
-    // Start the rotation loop after 2 seconds
-    timeoutId = setTimeout(() => {
-      intervalId = setInterval(() => {
-        setUsers((prevUsers) => {
-          const newArray = [...prevUsers];
-          const firstItem = newArray.shift();
-          newArray.push(firstItem);
-          return newArray;
-        });
-      }, 4000);
-    }, 2000);
-
-    // FIX: Cleanup function ensures timers stop when component unmounts
-    // This prevents the "lag after long time" issue.
-    return () => {
-      clearTimeout(timeoutId);
-      if (intervalId) clearInterval(intervalId);
-    };
+    const id = setInterval(rotateCards, 5000);
+    return () => clearInterval(id);
   }, []);
 
   return (
     <motion.div
-      className="relative w-[240px] h-[380px] md:w-[320px] md:h-[520px] lg:w-[380px] lg:h-[600px]"
-      animate={{
-        y: [0, -20, 0],
-      }}
+      className="relative flex items-center justify-center
+        w-[240px] h-[380px]
+        md:w-[320px] md:h-[520px]
+        lg:w-[380px] lg:h-[600px]"
+      animate={{ y: [0, -16, 0] }}
       transition={{
         duration: 6,
         repeat: Infinity,
@@ -106,9 +97,14 @@ const HeroCards = () => {
         ease: "easeInOut",
       }}
     >
-      {users.map((user, index) => {
-        return <HeroCard key={user.id} user={user} index={index} />;
-      })}
+      {users.map((user, index) => (
+        <HeroCard
+          key={user.id}
+          user={user}
+          index={index}
+          onNext={rotateCards}
+        />
+      ))}
     </motion.div>
   );
 };
