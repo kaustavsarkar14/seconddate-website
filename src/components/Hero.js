@@ -1,92 +1,64 @@
 import { motion } from "framer-motion";
 import HeroCards from "./HeroCards";
 import { PLAY_STORE_URL } from "../constants";
-
-// ANIMATION VARIANTS
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.25, // Time between each line appearing
-      delayChildren: 0.2,    // Initial delay before starting
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 30, 
-    filter: "blur(10px)" // Adds the "sleek" cinematic feel
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { 
-      duration: 0.8, 
-      ease: [0.25, 0.4, 0.25, 1] // Custom ease for smoothness
-    },
-  },
-};
+import coverImage from "../assets/cover.png";
 
 const Hero = () => {
   return (
     <section className="relative w-full min-h-screen gradient-bg pt-20 pb-12 md:pt-32 md:pb-24 flex items-center overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-        
-        {/* TEXT CONTENT WRAPPER */}
+      {/* 🔹 Cover Image */}
+      <div
+        className="opacity-30
+          absolute top-0 left-0 w-full h-[60%]
+          bg-cover bg-top bg-no-repeat pointer-events-none
+          md:[-webkit-mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]
+          md:[mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]
+        "
+        style={{ backgroundImage: `url(${coverImage})` }}
+      />
+      {/* 🔹 Top black fade for navbar readability */}
+     <div
+  className="
+    absolute top-0 left-0 w-full
+    h-96 md:h-40
+    bg-gradient-to-b from-black/90 to-transparent
+    pointer-events-none z-[5]
+  "
+/>
+
+      {/* 🔹 Content */}
+      <div className="relative max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center z-10">
         <motion.div
-          className="flex flex-col items-center md:items-start text-center md:text-left z-10"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          className="flex flex-col items-center md:items-start text-center md:text-left"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          {/* HEADLINE: Split into blocks for sequential animation */}
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] text-white tracking-tight">
-            <motion.span variants={itemVariants} className="block">
-              See them.
-            </motion.span>
-            <motion.span variants={itemVariants} className="block">
-              Hear them.
-            </motion.span>
-            <motion.span variants={itemVariants} className="block">
-              Then decide.
-            </motion.span>
+            See them.
+            <br />
+            Hear them.
+            <br />
+            Then decide.
           </h1>
 
-          {/* PARAGRAPH */}
-          <motion.p 
-            variants={itemVariants}
-            className="mt-4 md:mt-8 text-base md:text-xl lg:text-2xl text-white/90 font-medium max-w-sm md:max-w-lg leading-relaxed"
-          >
+          <p className="mt-4 md:mt-8 text-base md:text-xl lg:text-2xl text-white/90 font-medium max-w-sm md:max-w-lg leading-relaxed">
             A video-based dating app for real connections.
-          </motion.p>
+          </p>
 
-          {/* BUTTON */}
-          <motion.div variants={itemVariants} className="mt-8 md:mt-10">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href={PLAY_STORE_URL}
-              className="inline-block px-8 py-3.5 md:px-12 md:py-5 bg-black text-white rounded-full font-bold text-base md:text-xl shadow-xl hover:bg-gray-900 transition-colors"
-            >
-              Pre-Register
-            </motion.a>
-          </motion.div>
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href={PLAY_STORE_URL}
+            className="inline-block mt-8 md:mt-10 px-8 py-3.5 md:px-12 md:py-5 bg-black text-white rounded-full font-bold text-base md:text-xl shadow-xl hover:bg-gray-900 transition-colors"
+          >
+            Pre-Register
+          </motion.a>
         </motion.div>
 
-        {/* CARDS SECTION (Right Side) */}
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="flex justify-center md:justify-end items-center relative z-10 min-h-[400px] md:min-h-auto mt-6 md:mt-0"
-        >
+        <div className="flex justify-center md:justify-end items-center relative min-h-[400px] mt-6 md:mt-0">
           <HeroCards />
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );
