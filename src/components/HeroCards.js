@@ -10,7 +10,7 @@ const initialUsers = [
     gender: "Female",
     religion: "Hindu",
     swipes: 128,
-    video: require("../assets/videos/girl_1.mp4"),
+    video: require("../assets/videos/girl_4.mp4"),
     interests: ["🎧 Music", "☕ Coffee", "✈️ Travel"],
   },
   {

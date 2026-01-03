@@ -62,14 +62,14 @@ const HeroCard = ({ user, index, onNext }) => {
         transformOrigin: "center center",
       }}
       className="absolute top-0
-        w-[240px] h-[340px]
+        w-[240px] h-[380px]
         md:w-[320px] md:h-[480px]
         lg:w-[380px] lg:h-[540px]
         bg-white rounded-3xl overflow-hidden shadow-2xl
         border border-white/20 cursor-pointer"
     >
       {/* VIDEO */}
-      <div className="relative h-[55%] w-full overflow-hidden">
+      <div className="relative h-[65%] w-full overflow-hidden">
         <video
           ref={videoRef}
           src={user.video}
@@ -82,7 +82,7 @@ const HeroCard = ({ user, index, onNext }) => {
       </div>
 
       {/* CONTENT */}
-      <div className="p-4 md:p-6 lg:p-7 flex flex-col h-[45%] justify-between">
+      <div className="p-4 md:p-6 lg:p-7 flex flex-col h-[35%] justify-between">
         <div>
           <div className="flex justify-between items-center mb-1 md:mb-2">
             <h3 className="text-lg md:text-2xl lg:text-3xl font-extrabold text-gray-900">
