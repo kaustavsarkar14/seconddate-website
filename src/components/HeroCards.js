@@ -6,7 +6,7 @@ const initialUsers = [
   {
     id: 1,
     name: "Debadrita",
-    age: 22,
+    age: 19 ,
     gender: "Female",
     religion: "Hindu",
     swipes: 128,
@@ -16,7 +16,7 @@ const initialUsers = [
   {
     id: 2,
     name: "Arijit",
-    age: 25,
+    age: 23,
     gender: "Male",
     religion: "Christian",
     swipes: 142,
@@ -26,7 +26,7 @@ const initialUsers = [
   {
     id: 3,
     name: "Sushmita",
-    age: 23,
+    age: 21,
     gender: "Female",
     religion: "Hindu",
     swipes: 110,
@@ -36,7 +36,7 @@ const initialUsers = [
   {
     id: 4,
     name: "Joyesh",
-    age: 26,
+    age: 23 ,
     gender: "Male",
     religion: "Hindu",
     swipes: 94,
@@ -46,16 +46,16 @@ const initialUsers = [
   {
     id: 5,
     name: "Selina",
-    age: 20,
+    age: 19,
     gender: "Female",
-    religion: "Hindu",
+    religion: "Muslim",
     swipes: 110,
     video: require("../assets/videos/girl_3.mp4"),
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
     id: 6,
-    name: "Anirban",
+    name: "Anirban", 
     age: 20,
     gender: "Male",
     religion: "Hindu",
