@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import feed from "../assets/feed.png"; // adjust path if needed
+import feed from "../assets/phonescreen.png"; // adjust path if needed
 
 const AppPreview = () => {
   return (
