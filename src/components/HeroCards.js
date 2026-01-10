@@ -10,7 +10,7 @@ const initialUsers = [
     gender: "Female",
     religion: "Hindu",
     swipes: 128,
-    video: require("../assets/videos/girl_4.mp4"),
+    video: require("../assets/videos/girl1.mp4"),
     interests: ["🎧 Music", "☕ Coffee", "✈️ Travel"],
   },
   {
@@ -20,7 +20,7 @@ const initialUsers = [
     gender: "Male",
     religion: "Christian",
     swipes: 142,
-    video: require("../assets/videos/boy_1.mp4"),
+    video: require("../assets/videos/boy1.mp4"),
     interests: ["📸 Photography", "🌿 Nature"],
   },
   {
@@ -30,7 +30,7 @@ const initialUsers = [
     gender: "Female",
     religion: "Hindu",
     swipes: 110,
-    video: require("../assets/videos/girl_2.mp4"),
+    video: require("../assets/videos/girl2.mp4"),
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
@@ -40,7 +40,7 @@ const initialUsers = [
     gender: "Male",
     religion: "Hindu",
     swipes: 94,
-    video: require("../assets/videos/boy_2.mp4"),
+    video: require("../assets/videos/boy2.mp4"),
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
   {
@@ -50,7 +50,7 @@ const initialUsers = [
     gender: "Female",
     religion: "Muslim",
     swipes: 110,
-    video: require("../assets/videos/girl_3.mp4"),
+    video: require("../assets/videos/girl3.mp4"),
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
@@ -60,7 +60,7 @@ const initialUsers = [
     gender: "Male",
     religion: "Hindu",
     swipes: 94,
-    video: require("../assets/videos/boy_3.mp4"),
+    video: require("../assets/videos/boy3.mp4"),
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
 ];
