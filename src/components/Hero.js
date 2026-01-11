@@ -58,7 +58,6 @@ const buttonVariants = {
 const Hero = () => {
   return (
     <section className="relative w-full min-h-screen gradient-bg pt-20 pb-12 md:pt-32 md:pb-24 flex items-center overflow-hidden">
-      
       {/* 🔹 Cover Image */}
       <div
         className="
@@ -83,7 +82,6 @@ const Hero = () => {
 
       {/* 🔹 Content */}
       <div className="relative max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center z-10">
-        
         {/* LEFT: TEXT */}
         <motion.div
           className="flex flex-col items-center md:items-start text-center md:text-left"
@@ -95,17 +93,11 @@ const Hero = () => {
             variants={containerVariants}
             className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] text-white tracking-tight"
           >
-            <motion.div variants={lineVariants}>
-              See them.
-            </motion.div>
+            <motion.div variants={lineVariants}>See them.</motion.div>
 
-            <motion.div variants={lineVariants}>
-              Hear them.
-            </motion.div>
+            <motion.div variants={lineVariants}>Hear them.</motion.div>
 
-            <motion.div variants={lineVariants}>
-              Then decide.
-            </motion.div>
+            <motion.div variants={lineVariants}>Then decide.</motion.div>
           </motion.div>
 
           {/* Subtitle */}
@@ -116,6 +108,14 @@ const Hero = () => {
             className="mt-4 md:mt-8 text-base md:text-xl lg:text-2xl text-white/90 font-medium max-w-sm md:max-w-lg leading-relaxed"
           >
             A video-based dating app for real connections.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 3 }}
+            className="mt-3 text-sm md:text-base text-white/80 font-semibold tracking-wide"
+          >
+            Pre-register to get early access
           </motion.p>
 
           {/* CTA */}
