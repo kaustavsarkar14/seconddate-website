@@ -109,14 +109,14 @@ const Hero = () => {
           >
             A video-based dating app for real connections.
           </motion.p>
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut", delay: 3 }}
             className="mt-3 text-sm md:text-base text-white/80 font-semibold tracking-wide"
           >
             Pre-register to get early access
-          </motion.p>
+          </motion.p> */}
 
           {/* CTA */}
           <motion.a
@@ -126,9 +126,14 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href={PLAY_STORE_URL}
-            className="inline-block mt-8 md:mt-10 px-8 py-3.5 md:px-12 md:py-5 bg-black text-white rounded-full font-bold text-base md:text-xl shadow-xl hover:bg-gray-900 transition-colors"
+            className="inline-flex items-center gap-3 mt-8 md:mt-10 px-8 py-3.5 md:px-12 md:py-5 bg-black text-white rounded-full font-bold text-base md:text-xl shadow-xl hover:bg-gray-900 transition-colors"
           >
-            Pre-Register
+            <img
+              src="https://cdn-icons-png.flaticon.com/256/300/300218.png"
+              alt="Google Play"
+              className="h-6 md:h-7"
+            />
+            Download Now
           </motion.a>
         </motion.div>
 
