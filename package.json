@@ -20,20 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "reactSnap": {
-    "source": "build",
-    "minifyHtml": {
-      "collapseWhitespace": false,
-      "removeComments": false
-    },
-    "include": [
-      "/",
-      "/child-safety"
-    ]
   },
   "eslintConfig": {
     "extends": [
@@ -54,7 +42,6 @@
     ]
   },
   "devDependencies": {
-    "react-snap": "^1.23.0",
     "tailwindcss": "^3.4.19"
   }
 }
