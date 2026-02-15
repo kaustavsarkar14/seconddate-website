@@ -54,6 +54,9 @@ const Footer = () => {
         <Link to="/privacy-policy" style={linkStyle}>
           Privacy Policy
         </Link>
+        <Link to="/child-safety" style={linkStyle}>
+Child Safety Policy
+        </Link>
 
         <Link to="/terms" style={linkStyle}>
           Terms & Conditions

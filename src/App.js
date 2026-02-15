@@ -11,6 +11,7 @@ import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import Download from "./pages/Download";
+import ChildSafety from "./pages/ChildSafety";
 
 const App = () => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/terms" element={<Terms />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/download" element={<Download />} />
+          <Route path="/child-safety" element={<ChildSafety />} />
         </Routes>
 
         <Footer />
