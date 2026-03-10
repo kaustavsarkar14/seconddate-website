@@ -5,9 +5,10 @@
 @tailwind utilities;
 
 @layer base {
-  html {
+  html, body {
     font-family: "Inter", sans-serif;
-    @apply bg-[#0b0b0f] text-white overflow-x-hidden;
+    /* Removed overflow-x-clip from here. It breaks 'position: sticky' in WebKit/Safari */
+    @apply bg-[#0b0b0f] text-white; 
   }
 }
 
@@ -16,7 +17,6 @@
     background: linear-gradient(135deg, #ff5f9e, #ff7a6e, #ff9f43);
   }
   
-  /* Optional: Utility for hiding scrollbars if needed later */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }

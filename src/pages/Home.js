@@ -6,6 +6,7 @@ import CTA from "../components/CTA";
 const Home = () => {
   return (
     <>
+      {/* Removed SmartAppBanner from here */}
       <Hero />
       <AppPreview />
       <Features />

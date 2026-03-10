@@ -1,8 +1,7 @@
 import {
   Instagram,
-  Twitter,
-  Linkedin,
   Mail,
+  Play,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -16,7 +15,7 @@ const Footer = () => {
         fontSize: "0.85rem",
       }}
     >
-      {/* Social icons (external) */}
+      {/* Social and App icons (external) */}
       <div
         style={{
           display: "flex",
@@ -25,20 +24,16 @@ const Footer = () => {
           marginBottom: "1.5rem",
         }}
       >
-        <SocialIcon href="https://instagram.com">
+        <SocialIcon href="https://www.instagram.com/seconddate.in/">
           <Instagram size={22} />
         </SocialIcon>
 
-        <SocialIcon href="https://twitter.com">
-          <Twitter size={22} />
-        </SocialIcon>
-
-        <SocialIcon href="https://linkedin.com">
-          <Linkedin size={22} />
-        </SocialIcon>
-
-        <SocialIcon href="mailto:support@seconddate.app">
+        <SocialIcon href="mailto:dev.seconddate@gmail.com">
           <Mail size={22} />
+        </SocialIcon>
+
+        <SocialIcon href="https://play.google.com/store/apps/details?id=com.bongdate.bongDate&hl=en-US&ah=jIbw0EmQpsAX2ya_6H5-iBshoa0">
+          <Play size={22} />
         </SocialIcon>
       </div>
 
@@ -54,8 +49,9 @@ const Footer = () => {
         <Link to="/privacy-policy" style={linkStyle}>
           Privacy Policy
         </Link>
+
         <Link to="/child-safety" style={linkStyle}>
-Child Safety Policy
+          Child Safety Policy
         </Link>
 
         <Link to="/terms" style={linkStyle}>
