@@ -58,6 +58,9 @@ const Footer = () => {
           Terms & Conditions
         </Link>
 
+        <Link to="/refund-policy" style={linkStyle}>
+          Refund Policy
+        </Link>
         <Link to="/contact" style={linkStyle}>
           Contact Us
         </Link>

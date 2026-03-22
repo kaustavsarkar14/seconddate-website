@@ -10,8 +10,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
-import Download from "./pages/Download";
 import SmartAppBanner from "./components/SmartAppBanner"; 
+import RefundPolicy from "./pages/refund-policy";
 
 const App = () => {
   useEffect(() => {
@@ -50,7 +50,8 @@ const App = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/download" element={<Download />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
           </Routes>
         </div>
 
