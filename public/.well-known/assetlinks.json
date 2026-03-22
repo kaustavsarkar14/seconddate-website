@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bongdate.bongDate",
+      "sha256_cert_fingerprints": [
+        "AB:94:FC:12:E5:47:60:B5:E4:DD:0D:75:7D:D4:7F:C3:59:34:40:58:DC:01:D0:09:EA:30:2B:38:1C:4A:B6:79"
+      ]
+    }
+  }
+]
