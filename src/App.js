@@ -10,8 +10,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
-import SmartAppBanner from "./components/SmartAppBanner"; 
+import SmartAppBanner from "./components/SmartAppBanner";
 import RefundPolicy from "./pages/refund-policy";
+import Download from "./pages/Download";
 
 const App = () => {
   useEffect(() => {
@@ -33,16 +34,15 @@ const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      
+
       {/* Ensure main remains clean of any overflow properties */}
       <main className="w-full relative flex flex-col min-h-screen">
-        
         {/* Because it's sticky, it stays in the document flow and naturally pushes Navbar down */}
         <SmartAppBanner />
-        
+
         <Navbar />
         <Analytics />
-        
+
         {/* Apply overflow-x-clip safely here, away from the sticky header context */}
         <div className="flex-1 w-full overflow-x-clip">
           <Routes>
@@ -50,6 +50,7 @@ const App = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/download" element={<Download />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
           </Routes>
