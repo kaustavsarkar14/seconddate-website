@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, X, ArrowRight } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 import HeroCards from "./HeroCards";
 import { PLAY_STORE_URL } from "../constants";
 import coverImage from "../assets/cover.png";
