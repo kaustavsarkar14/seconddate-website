@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight } from "lucide-react";
 import HeroCards from "./HeroCards";
-import { PLAY_STORE_URL } from "../constants";
+// import { PLAY_STORE_URL } from "../constants";
 import coverImage from "../assets/cover.png";
 
 /* -------------------------------
@@ -39,23 +39,23 @@ const lineVariants = {
 };
 
 // CTA button (quick appearance)
-const buttonVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    scale: 0.95,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-      delay: 0.4,
-    },
-  },
-};
+// const buttonVariants = {
+//   hidden: {
+//     opacity: 0,
+//     y: 20,
+//     scale: 0.95,
+//   },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     scale: 1,
+//     transition: {
+//       duration: 0.4,
+//       ease: "easeOut",
+//       delay: 0.4,
+//     },
+//   },
+// };
 
 const CardSwiper = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

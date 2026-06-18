@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { PLAY_STORE_URL } from "../constants";
 
