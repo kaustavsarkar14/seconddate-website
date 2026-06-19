@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 import { PLAY_STORE_URL } from "../constants";
 
+// 1. Import your local static fallback image
+import heroFirstFrame from "../assets/herogiffirstframe.jpg";
+
+// Preload the cloud GIF as early as possible for smoother initial playback
+if (typeof window !== "undefined") {
+  const preloadImg = new Image();
+  preloadImg.src = "https://pub-50d3bf9f0e964cdabeae6ecad508e9df.r2.dev/assets/herogif.gif";
+}
+
 /* -------------------------------
    Animation Variants
 -------------------------------- */
@@ -56,8 +65,19 @@ const buttonVariants = {
 const Hero = () => {
   return (
     <>
-      <section className="relative w-full min-h-screen gradient-bg pt-16 pb-12 md:pt-24 md:pb-24 flex items-center justify-center overflow-hidden">
-        {/* 🔹 Full Background GIF */}
+      {/* Changed min-h-screen to min-h-[100dvh] for mobile viewport stability */}
+      <section className="relative w-full min-h-[100dvh] sm:min-h-screen gradient-bg pt-16 pb-12 md:pt-24 md:pb-24 flex items-center justify-center overflow-hidden">
+        
+        {/* 🔹 Static Fallback Image (Loads instantly from your local assets) */}
+        <div
+          className="
+            absolute inset-0 w-full h-full
+            bg-cover bg-center bg-no-repeat pointer-events-none z-[1]
+          "
+          style={{ backgroundImage: `url(${heroFirstFrame})` }}
+        />
+
+        {/* 🔹 Full Background GIF (Loads from your cloud URL over the top) */}
         <div
           className="
             absolute inset-0 w-full h-full
@@ -76,12 +96,12 @@ const Hero = () => {
           "
         />
 
-        {/* 🔹 Bottom black gradient fade (Height and opacity increased for more pop) */}
+        {/* 🔹 Bottom black gradient fade (Smoothed out the via-black interpolation bug) */}
         <div
           className="
             absolute bottom-0 left-0 w-full
             h-96 md:h-[32rem]
-            bg-gradient-to-t from-black via-black/100 to-transparent
+            bg-gradient-to-t from-black via-black/90 to-transparent
             pointer-events-none z-[2]
           "
         />
@@ -124,7 +144,7 @@ const Hero = () => {
               {/* A video-based dating app for real connections. */}
             </motion.p>
 
-            {/* CTA - Only Download Now Button (Styling kept exactly as requested) */}
+            {/* CTA - Removed shadow-2xl and added transform-gpu will-change-transform to fix iOS render bug */}
             <motion.a
               variants={buttonVariants}
               initial="hidden"
@@ -132,7 +152,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href={PLAY_STORE_URL}
-              className="inline-flex items-center gap-3 mt-8 md:mt-10 px-8 py-3.5 md:px-12 md:py-5 bg-white text-black rounded-full font-bold text-base md:text-xl shadow-2xl hover:bg-gray-200 transition-colors border border-white/10"
+              className="inline-flex items-center gap-3 mt-8 md:mt-10 px-8 py-3.5 md:px-12 md:py-5 bg-white text-black rounded-full font-bold text-base md:text-xl hover:bg-gray-200 transition-colors border border-white/10 transform-gpu will-change-transform"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/256/300/300218.png"
