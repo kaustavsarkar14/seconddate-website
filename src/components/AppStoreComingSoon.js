@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { PLAY_STORE_URL } from "../constants";
+
 
 // Apple logo (Simple Icons, CC0)
 export const AppleLogo = (props) => (
