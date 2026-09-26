@@ -13,7 +13,7 @@ import {
 
 const PrivacyPolicy = () => {
   return (
-    <section className="min-h-screen px-4 sm:px-6 py-16 sm:py-20 text-white bg-gradient-to-b from-black to-[#1c0c14]">
+    <section className="min-h-screen px-4 sm:px-6 py-16 sm:py-20 pt-28 sm:pt-32 md:pt-40 text-white bg-gradient-to-b from-black to-[#1c0c14]">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="mb-12 sm:mb-16 text-center">

@@ -3,7 +3,7 @@ import { ShieldCheck, AlertTriangle, Mail } from 'lucide-react';
 
 const ChildSafety = () => {
   return (
-    <section className="min-h-screen px-4 py-14 text-white bg-gradient-to-b from-black/30 to-black/70">
+    <section className="min-h-screen px-4 py-14 pt-28 sm:pt-32 md:pt-40 text-white bg-gradient-to-b from-black/30 to-black/70">
       <div className="max-w-md mx-auto">
 
         {/* Header Section */}

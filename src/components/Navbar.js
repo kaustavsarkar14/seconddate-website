@@ -10,7 +10,8 @@ const Navbar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="absolute top-0 left-0 w-full z-20 px-4 py-4 md:py-6"
+      // Sit just below the dismissable app banner (it publishes its live height as --sab-h)
+      className="absolute top-[var(--sab-h,0px)] left-0 w-full z-20 px-4 py-4 md:py-6"
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         

@@ -10,6 +10,7 @@ import {
 import { PLAY_STORE_URL } from "../constants";
 import BlindStage from "./hero/BlindStage";
 import FloatingIcons from "./FloatingIcons";
+import AppStoreComingSoon from "./AppStoreComingSoon";
 
 /* -------------------------------
    Animation Variants
@@ -132,23 +133,26 @@ const Hero = () => {
             </span>
           </h1>
 
-          {/* CTA */}
-          <motion.div variants={fadeUp(1.5)} className="relative mt-[clamp(18px,3.4svh,40px)]">
-            {/* Glow sits behind the button as its own layer (no box-shadow on the animated element → iOS safe) */}
-            <div aria-hidden="true" className="absolute -inset-5 rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.55),rgba(255,255,255,0.12),transparent)] hero-breathe pointer-events-none" />
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href={PLAY_STORE_URL}
-              className="relative inline-flex items-center gap-3 px-8 py-3 md:px-10 md:py-4 bg-white text-[#111] rounded-full font-bold text-base md:text-xl hover:bg-gray-50 transition-colors transform-gpu will-change-transform"
-            >
-              <img
-                src="https://cdn-icons-png.flaticon.com/256/300/300218.png"
-                alt="Google Play"
-                className="h-6 md:h-7"
-              />
-              Download Now
-            </motion.a>
+          {/* CTAs: Play Store (live) + App Store (coming soon popup), stacked; side by side on short screens */}
+          <motion.div variants={fadeUp(1.5)} className="mt-[clamp(18px,3.4svh,40px)] flex flex-col short:flex-row shortdesk:flex-row items-center gap-[clamp(8px,1.4svh,14px)] short:gap-2">
+            <div className="relative">
+              {/* Glow sits behind the button as its own layer (no box-shadow on the animated element → iOS safe) */}
+              <div aria-hidden="true" className="absolute -inset-5 rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.55),rgba(255,255,255,0.12),transparent)] hero-breathe pointer-events-none" />
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href={PLAY_STORE_URL}
+                className="relative inline-flex items-center justify-center gap-3 short:gap-2 w-[236px] md:w-[290px] short:w-[min(164px,44vw)] py-3 md:py-4 short:py-2.5 short:text-[15px] bg-white text-[#111] rounded-full font-bold text-base md:text-xl hover:bg-gray-50 transition-colors transform-gpu will-change-transform"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/256/300/300218.png"
+                  alt="Google Play"
+                  className="h-6 md:h-7 short:h-5"
+                />
+                Download Now
+              </motion.a>
+            </div>
+            <AppStoreComingSoon className="w-[236px] md:w-[290px] short:w-[min(164px,44vw)] py-3 md:py-4 short:py-2.5 text-base md:text-xl short:text-[15px] short:gap-2" />
           </motion.div>
         </motion.div>
       </div>
