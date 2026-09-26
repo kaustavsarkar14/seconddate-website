@@ -10,7 +10,7 @@ import {
 import { PLAY_STORE_URL } from "../constants";
 import BlindStage from "./hero/BlindStage";
 import FloatingIcons from "./FloatingIcons";
-import AppStoreComingSoon from "./AppStoreComingSoon";
+import AppStorePreRegister from "./AppStorePreRegister";
 
 /* -------------------------------
    Animation Variants
@@ -152,7 +152,7 @@ const Hero = () => {
                 Download Now
               </motion.a>
             </div>
-            <AppStoreComingSoon className="w-[236px] md:w-[290px] short:w-[min(164px,44vw)] py-3 md:py-4 short:py-2.5 text-base md:text-xl short:text-[15px] short:gap-2" />
+            <AppStorePreRegister className="w-[236px] md:w-[290px] short:w-[min(164px,44vw)] py-3 md:py-4 short:py-2.5 text-base md:text-xl short:text-[15px] short:gap-2" />
           </motion.div>
         </motion.div>
       </div>
