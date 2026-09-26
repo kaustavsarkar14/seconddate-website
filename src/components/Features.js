@@ -35,7 +35,7 @@ const Features = () => {
       style={{
         padding: "5rem 1.5rem",
         background:
-          "radial-gradient(circle at top, rgba(124,58,237,0.08), transparent 60%)",
+          "radial-gradient(circle at top, rgba(255,53,110,0.08), transparent 60%)",
       }}
     >
       <div
@@ -88,7 +88,7 @@ const Features = () => {
                   inset: -1,
                   borderRadius: 24,
                   background:
-                    "linear-gradient(135deg, rgba(124,58,237,0.6), rgba(236,72,153,0.6))",
+                    "linear-gradient(135deg, rgba(255,115,53,0.6), rgba(236,72,153,0.6))",
                   filter: "blur(28px)",
                   zIndex: 0,
                 }}
@@ -113,7 +113,7 @@ const Features = () => {
                     display: "grid",
                     placeItems: "center",
                     background:
-                      "linear-gradient(135deg, #7c3aed, #ec4899)",
+                      "linear-gradient(135deg, #ff7335, #ff356e)",
                   }}
                 >
                   <Icon size={26} color="#fff" />

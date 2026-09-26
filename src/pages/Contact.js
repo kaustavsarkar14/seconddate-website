@@ -99,7 +99,7 @@ const ContactRow = ({ icon: Icon, title, subtitle, action, href }) => {
       <div className="
         w-9 h-9
         rounded-lg
-        bg-gradient-to-br from-pink-500/30 to-purple-500/30
+        bg-gradient-to-br from-pink-500/30 to-orange-400/30
         grid place-items-center
         shrink-0
       ">

@@ -13,7 +13,7 @@ import {
 
 const PrivacyPolicy = () => {
   return (
-    <section className="min-h-screen px-4 sm:px-6 py-16 sm:py-20 text-white bg-gradient-to-b from-black to-gray-900">
+    <section className="min-h-screen px-4 sm:px-6 py-16 sm:py-20 text-white bg-gradient-to-b from-black to-[#1c0c14]">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="mb-12 sm:mb-16 text-center">
@@ -24,11 +24,11 @@ const PrivacyPolicy = () => {
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-orange-400">
             Privacy Policy
           </h1>
 
-          <p className="text-sm sm:text-base text-gray-400 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-neutral-400 max-w-xl mx-auto leading-relaxed">
             At <strong>SecondDate</strong> (developed by HrithikAdhikary), your
             privacy and safety come first. This policy explains what data we
             collect, how we protect it, and our strict community standards.
@@ -139,11 +139,11 @@ const PrivacyPolicy = () => {
           </div>
 
           <div className="mt-8 pt-8 border-t border-white/10 text-center">
-            <div className="inline-flex items-center justify-center gap-2 text-gray-400 mb-2">
+            <div className="inline-flex items-center justify-center gap-2 text-neutral-400 mb-2">
               <Mail size={16} />
               <span className="text-sm font-medium">Contact Us</span>
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               Questions? Reach us at{" "}
               <a
                 href="mailto:support@seconddate.app"
@@ -168,15 +168,15 @@ export default PrivacyPolicy;
 const PolicyCard = ({ icon: Icon, title, text }) => {
   return (
     <div className="flex gap-4 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors group">
-      <div className="shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 grid place-items-center border border-white/5 group-hover:border-pink-500/30 transition-colors">
-        <Icon size={18} className="text-gray-300 group-hover:text-pink-400" />
+      <div className="shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-[#2a1620] to-[#160a10] grid place-items-center border border-white/5 group-hover:border-pink-500/30 transition-colors">
+        <Icon size={18} className="text-neutral-300 group-hover:text-pink-400" />
       </div>
 
       <div>
-        <h3 className="font-semibold text-sm sm:text-base text-gray-200 mb-1">
+        <h3 className="font-semibold text-sm sm:text-base text-neutral-200 mb-1">
           {title}
         </h3>
-        <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
+        <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
           {text}
         </p>
       </div>

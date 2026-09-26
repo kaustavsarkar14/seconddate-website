@@ -86,7 +86,7 @@ const SocialIcon = ({ href, children }) => (
       display: "grid",
       placeItems: "center",
       background:
-        "linear-gradient(135deg, rgba(124,58,237,0.35), rgba(236,72,153,0.35))",
+        "linear-gradient(135deg, rgba(255,115,53,0.35), rgba(236,72,153,0.35))",
       color: "#fff",
     }}
   >

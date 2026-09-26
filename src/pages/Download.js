@@ -19,7 +19,7 @@ const Download = () => {
           Opening Play Store...
         </div>
         
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-neutral-400">
           If it doesn't open automatically,{" "}
           <a 
             href="https://play.google.com/store/apps/details?id=com.bongdate.bongDate"

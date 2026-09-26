@@ -108,7 +108,7 @@ const TermCard = ({ icon: Icon, title, text }) => {
         shrink-0
         w-9 h-9 sm:w-11 sm:h-11
         rounded-lg sm:rounded-xl
-        bg-gradient-to-br from-purple-500/30 to-pink-500/30
+        bg-gradient-to-br from-orange-400/30 to-pink-500/30
         grid place-items-center
       ">
         <Icon size={18} />

@@ -97,7 +97,7 @@ const ChildSafety = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="p-5 rounded-xl bg-gradient-to-br from-pink-500/10 to-purple-500/10 border border-white/10">
+          <div className="p-5 rounded-xl bg-gradient-to-br from-pink-500/10 to-orange-400/10 border border-white/10">
             <h2 className="text-lg font-medium mb-3 flex items-center gap-2">
                <Mail size={16} />
                Child Safety Contact Point
@@ -110,10 +110,10 @@ const ChildSafety = () => {
               href="mailto:dev.seconddate@gmail.com"
               className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 active:bg-white/10 transition mb-4"
             >
-              <div className="w-8 h-8 rounded-full bg-blue-500/20 grid place-items-center text-blue-400">
+              <div className="w-8 h-8 rounded-full bg-pink-500/20 grid place-items-center text-pink-400">
                 <Mail size={14} />
               </div>
-              <div className="text-sm font-medium text-blue-300">
+              <div className="text-sm font-medium text-pink-300">
                 dev.seconddate@gmail.com
               </div>
             </a>

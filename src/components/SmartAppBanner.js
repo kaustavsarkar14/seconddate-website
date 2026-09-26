@@ -1,14 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import appIcon from '../assets/app-icon.png';
 
 const SmartAppBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const bannerRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Publish the banner height as --sab-h so the hero can fit exactly in the remaining screen
+  useEffect(() => {
+    const el = bannerRef.current;
+    const root = document.documentElement;
+    if (!el) return;
+    // Update on the next frame: changing layout inside the observer callback triggers
+    // "ResizeObserver loop completed with undelivered notifications" (Lenis observes the page too)
+    let raf = 0;
+    const ro = new ResizeObserver(() => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => root.style.setProperty('--sab-h', `${el.offsetHeight}px`));
+    });
+    ro.observe(el);
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      root.style.setProperty('--sab-h', '0px');
+    };
+  }, [isVisible]);
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -18,6 +39,7 @@ const SmartAppBanner = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          ref={bannerRef}
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
@@ -45,7 +67,7 @@ const SmartAppBanner = () => {
                   <img 
                     src={appIcon} 
                     alt="SecondDate App" 
-                    className="w-full h-full object-cover bg-slate-800"
+                    className="w-full h-full object-cover bg-neutral-800"
                     onError={(e) => { e.target.style.display = 'none'; }}
                   />
                 </div>

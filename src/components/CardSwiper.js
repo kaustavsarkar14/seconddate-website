@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight } from "lucide-react";
 import HeroCards from "./HeroCards";
+import ScrollScale from "./ScrollScale";
 // import { PLAY_STORE_URL } from "../constants";
 import coverImage from "../assets/cover.png";
 
@@ -32,7 +33,7 @@ const lineVariants = {
     y: 0,
     filter: "blur(0px)",
     transition: {
-      duration: 3,
+      duration: 1.2,
       ease: [0.22, 1, 0.36, 1], // smooth premium easing
     },
   },
@@ -72,25 +73,25 @@ const CardSwiper = () => {
 
   return (
     <>
-      <section className="relative w-full min-h-screen gradient-bg pt-16 pb-12 md:pt-24 md:pb-24 flex items-center overflow-hidden">
+      <section className="relative w-full md:min-h-screen gradient-bg pt-8 pb-12 md:pt-24 md:pb-24 flex items-center overflow-hidden">
         {/* 🔹 Cover Image */}
         <div
           className="
             opacity-30
             absolute top-0 left-0 w-full h-[60%]
             bg-cover bg-top bg-no-repeat pointer-events-none
-            md:[-webkit-mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]
-            md:[mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]
+            [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_40%,black_70%,transparent_100%)]
+            [mask-image:linear-gradient(to_bottom,transparent_0%,black_40%,black_70%,transparent_100%)]
           "
           style={{ backgroundImage: `url(${coverImage})` }}
         />
 
-        {/* 🔹 Top black fade for navbar readability */}
+        {/* 🔹 Top fade: blends out of the hero's orange bottom edge */}
         <div
           className="
             absolute top-0 left-0 w-full
             h-96 md:h-40
-            bg-gradient-to-b from-black/90 to-transparent
+            bg-gradient-to-b from-[#ff7335] to-transparent
             pointer-events-none z-[5]
           "
         />
@@ -101,25 +102,29 @@ const CardSwiper = () => {
           <motion.div
             className="flex flex-col items-center md:items-start text-center md:text-left"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Animated Headline */}
-            <motion.div
-              variants={containerVariants}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] text-white tracking-tight"
-            >
-              <motion.div variants={lineVariants}>See them.</motion.div>
+            {/* Animated Headline (zooms with scroll) */}
+            <ScrollScale className="origin-center md:origin-left">
+              <motion.div
+                variants={containerVariants}
+                className="text-[2.9rem] sm:text-6xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-black leading-[1.02] text-white tracking-[-0.03em] whitespace-nowrap"
+              >
+                <motion.div variants={lineVariants}>See them.</motion.div>
 
-              <motion.div variants={lineVariants}>Hear them.</motion.div>
+                <motion.div variants={lineVariants}>Hear them.</motion.div>
 
-              <motion.div variants={lineVariants}>Then decide.</motion.div>
-            </motion.div>
+                <motion.div variants={lineVariants}>Then decide.</motion.div>
+              </motion.div>
+            </ScrollScale>
 
             {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               className="mt-4 md:mt-8 text-base md:text-xl lg:text-2xl text-white/90 font-medium max-w-sm md:max-w-lg leading-relaxed"
             >
               A video-based dating app for real connections.
@@ -221,7 +226,7 @@ const CardSwiper = () => {
               <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {/* Male Button */}
                 <motion.button
-                  whileHover={{ scale: 1.02, x: 5, backgroundColor: "rgba(124,58,237,0.15)" }}
+                  whileHover={{ scale: 1.02, x: 5, backgroundColor: "rgba(255,115,53,0.15)" }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleSelection("male")}
                   style={{
@@ -232,7 +237,7 @@ const CardSwiper = () => {
                     padding: "1.2rem",
                     borderRadius: 16,
                     background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(124,58,237,0.3)",
+                    border: "1px solid rgba(255,115,53,0.3)",
                     color: "#fff",
                     fontSize: "1.1rem",
                     fontWeight: 600,
@@ -241,7 +246,7 @@ const CardSwiper = () => {
                   }}
                 >
                   <span>Male ♂</span>
-                  <ArrowRight size={20} color="#7c3aed" />
+                  <ArrowRight size={20} color="#ff7335" />
                 </motion.button>
 
                 {/* Female Button */}

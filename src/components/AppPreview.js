@@ -1,36 +1,42 @@
 import { motion } from "framer-motion";
 import feed from "../assets/phonescreen.png"; // adjust path if needed
+import ScrollScale from "./ScrollScale";
 
 const AppPreview = () => {
   return (
     <section
       style={{
-        padding: "6rem 1.5rem",
+        padding: "4rem 1.5rem 5rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         gap: "2.5rem",
       }}
     >
-      {/* Title */}
-      <motion.h2
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{
-          duration: 0.9,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        style={{
-          fontSize: "clamp(2rem, 4vw, 3rem)",
-          fontWeight: 600,
-          letterSpacing: "-0.02em",
-          color: "#fff",
-          textAlign: "center",
-        }}
-      >
-        Build real connections
-      </motion.h2>
+      {/* Title (zooms with scroll) */}
+      <ScrollScale>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.9,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          style={{
+            fontSize: "clamp(2.6rem, 8vw, 5rem)",
+            fontWeight: 900,
+            lineHeight: 1.02,
+            letterSpacing: "-0.03em",
+            color: "#fff",
+            textAlign: "center",
+          }}
+        >
+          Build real
+          <br />
+          connections
+        </motion.h2>
+      </ScrollScale>
 
       {/* App Preview Image */}
       <motion.img
