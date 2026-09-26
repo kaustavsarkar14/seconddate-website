@@ -31,7 +31,7 @@ const ChildSafety = () => {
           {/* Introduction Card */}
           <div className="p-5 rounded-xl bg-white/5 border border-white/10">
             <p className="text-sm opacity-80 leading-relaxed">
-              <strong className="text-white">Second Date - Video Dating App</strong> (developed by Hrithik Adhikary) is committed to maintaining a safe, positive, and respectful platform. We have a <strong className="text-white">Zero Tolerance Policy</strong> regarding any form of Child Sexual Abuse and Exploitation (CSAE). Protecting minors is our highest priority.
+              <strong className="text-white">Second Date - Blind Dating App</strong> (developed by Hrithik Adhikary) is committed to maintaining a safe, positive, and respectful platform. We have a <strong className="text-white">Zero Tolerance Policy</strong> regarding any form of Child Sexual Abuse and Exploitation (CSAE). Protecting minors is our highest priority.
             </p>
           </div>
 
