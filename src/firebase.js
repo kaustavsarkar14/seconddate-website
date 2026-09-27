@@ -24,17 +24,18 @@ const getDb = () => {
 const TIMEOUT_MS = 12000;
 
 /**
- * Saves an iOS pre-registration: iosPreRegistration/{autoId} = { name, email, createdAt }.
+ * Saves an iOS pre-registration: iosPreRegistration/{autoId} = { name, email, whatsapp, createdAt }.
  * Firestore resolves writes only after the server acknowledges them (it would wait forever
  * while offline), so this rejects after TIMEOUT_MS instead of leaving the form spinning.
  */
-export async function savePreRegistration({ name, email }) {
+export async function savePreRegistration({ name, email, whatsapp }) {
   const db = await getDb();
   const { collection, addDoc, serverTimestamp } = await import("firebase/firestore");
 
   const write = addDoc(collection(db, "iosPreRegistration"), {
     name,
     email,
+    whatsapp,
     createdAt: serverTimestamp(),
   });
   const timeout = new Promise((_, reject) =>

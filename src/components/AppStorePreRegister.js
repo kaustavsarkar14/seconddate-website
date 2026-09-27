@@ -21,6 +21,8 @@ const SPARKS = [
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+// Indian mobile number (10 digits, starts with 6-9); stored with the +91 prefix
+const MOBILE_RE = /^[6-9]\d{9}$/;
 
 const inputClass =
   "w-full h-12 px-4 rounded-2xl bg-white/[0.06] border border-white/10 text-base text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#ff356e] focus:bg-white/[0.08]";
@@ -31,6 +33,7 @@ const inputClass =
 const PreRegisterForm = ({ onClose }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [status, setStatus] = useState("idle"); // idle | saving | done
   const [error, setError] = useState("");
 
@@ -42,11 +45,14 @@ const PreRegisterForm = ({ onClose }) => {
     if (!cleanName) return setError("Please enter your name.");
     if (cleanName.length > 80) return setError("That name is a bit long. Try a shorter one.");
     if (!EMAIL_RE.test(cleanEmail) || cleanEmail.length > 254) return setError("Please enter a valid email address.");
+    // Accept pasted numbers like "+91 98765-43210" or "098765 43210"
+    const digits = whatsapp.replace(/\D/g, "").replace(/^(91|0)(?=\d{10}$)/, "");
+    if (!MOBILE_RE.test(digits)) return setError("Please enter a valid 10-digit WhatsApp number.");
 
     setError("");
     setStatus("saving");
     try {
-      await savePreRegistration({ name: cleanName, email: cleanEmail });
+      await savePreRegistration({ name: cleanName, email: cleanEmail, whatsapp: `+91${digits}` });
       setName(cleanName);
       setEmail(cleanEmail);
       setStatus("done");
@@ -98,6 +104,25 @@ const PreRegisterForm = ({ onClose }) => {
             disabled={status === "saving"}
             className={inputClass}
           />
+          <label htmlFor="prereg-whatsapp" className="sr-only">WhatsApp number</label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-base text-white/60 pointer-events-none">
+              +91
+            </span>
+            {/* "+91" is already shown as the prefix, so a pasted "+91 …" is stripped */}
+            <input
+              id="prereg-whatsapp"
+              type="tel"
+              inputMode="numeric"
+              autoComplete="tel-national"
+              placeholder="WhatsApp number"
+              maxLength={16}
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value.replace(/^\s*\+91[\s-]*/, ""))}
+              disabled={status === "saving"}
+              className={`${inputClass} pl-[3.25rem]`}
+            />
+          </div>
 
           <AnimatePresence>
             {error && (
@@ -129,7 +154,7 @@ const PreRegisterForm = ({ onClose }) => {
             )}
           </motion.button>
           <p className="text-center text-[11px] text-white/40">
-            We'll only email you about the iOS launch.
+            We'll only contact you about the iOS launch.
           </p>
         </motion.form>
       ) : (
