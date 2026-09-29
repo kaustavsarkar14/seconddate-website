@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import HeroCard from "./HeroCard";
+import { ASSETS_URL } from "../constants";
 
 const initialUsers = [
   {
@@ -10,8 +11,8 @@ const initialUsers = [
     gender: "Female",
     religion: "Hindu",
     swipes: 128,
-    video: require("../assets/videos/girl1.mp4"),
-    poster: require("../assets/videos/posters/girl1.webp"),
+    video: `${ASSETS_URL}/videos/girl1.mp4`,
+    poster: `${ASSETS_URL}/videos/posters/girl1.webp`,
     interests: ["🎧 Music", "☕ Coffee", "✈️ Travel"],
   },
   {
@@ -21,8 +22,8 @@ const initialUsers = [
     gender: "Male",
     religion: "Christian",
     swipes: 142,
-    video: require("../assets/videos/boy1.mp4"),
-    poster: require("../assets/videos/posters/boy1.webp"),
+    video: `${ASSETS_URL}/videos/boy1.mp4`,
+    poster: `${ASSETS_URL}/videos/posters/boy1.webp`,
     interests: ["📸 Photography", "🌿 Nature"],
   },
   {
@@ -32,8 +33,8 @@ const initialUsers = [
     gender: "Female",
     religion: "Hindu",
     swipes: 110,
-    video: require("../assets/videos/girl2.mp4"),
-    poster: require("../assets/videos/posters/girl2.webp"),
+    video: `${ASSETS_URL}/videos/girl2.mp4`,
+    poster: `${ASSETS_URL}/videos/posters/girl2.webp`,
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
@@ -43,8 +44,8 @@ const initialUsers = [
     gender: "Male",
     religion: "Hindu",
     swipes: 94,
-    video: require("../assets/videos/boy2.mp4"),
-    poster: require("../assets/videos/posters/boy2.webp"),
+    video: `${ASSETS_URL}/videos/boy2.mp4`,
+    poster: `${ASSETS_URL}/videos/posters/boy2.webp`,
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
   {
@@ -54,8 +55,8 @@ const initialUsers = [
     gender: "Female",
     religion: "Muslim",
     swipes: 110,
-    video: require("../assets/videos/girl3.mp4"),
-    poster: require("../assets/videos/posters/girl3.webp"),
+    video: `${ASSETS_URL}/videos/girl3.mp4`,
+    poster: `${ASSETS_URL}/videos/posters/girl3.webp`,
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
@@ -65,8 +66,8 @@ const initialUsers = [
     gender: "Male",
     religion: "Hindu",
     swipes: 94,
-    video: require("../assets/videos/boy3.mp4"),
-    poster: require("../assets/videos/posters/boy3.webp"),
+    video: `${ASSETS_URL}/videos/boy3.mp4`,
+    poster: `${ASSETS_URL}/videos/posters/boy3.webp`,
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
 ];

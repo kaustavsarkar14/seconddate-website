@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import feed from "../assets/phonescreen.webp";
+import { ASSETS_URL } from "../constants";
 import ScrollScale from "./ScrollScale";
+
+const feed = `${ASSETS_URL}/phonescreen.webp`;
 
 const AppPreview = () => {
   return (

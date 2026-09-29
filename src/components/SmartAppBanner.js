@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import appIcon from '../assets/app-icon.png';
+import { ASSETS_URL } from '../constants';
+
+const appIcon = `${ASSETS_URL}/app-icon.png`;
 
 const SmartAppBanner = () => {
   const [isVisible, setIsVisible] = useState(false);

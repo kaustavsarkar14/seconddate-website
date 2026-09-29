@@ -4,7 +4,9 @@ import { X, ArrowRight } from "lucide-react";
 import HeroCards from "./HeroCards";
 import ScrollScale from "./ScrollScale";
 // import { PLAY_STORE_URL } from "../constants";
-import coverImage from "../assets/cover.webp";
+import { ASSETS_URL } from "../constants";
+
+const coverImage = `${ASSETS_URL}/cover.webp`;
 
 /* -------------------------------
    Animation Variants
