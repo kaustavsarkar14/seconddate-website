@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const HeroCard = ({ user, index, onNext }) => {
+const HeroCard = ({ user, index, active, onNext }) => {
   const videoRef = useRef(null);
 
   const isFront = index === 0;
@@ -10,17 +10,25 @@ const HeroCard = ({ user, index, onNext }) => {
 
   const uniqueTilt = (user.id * 17) % 10 - 5;
 
+  // Only fetch this card's video once the stack is near the screen AND the card is one of the
+  // two visible ones; after that keep the src so rotating back doesn't download it again
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    if (active && isVisible) setLoaded(true);
+  }, [active, isVisible]);
+
   // VIDEO PLAY / PAUSE
   useEffect(() => {
-    if (!videoRef.current) return;
+    const video = videoRef.current;
+    if (!video || !loaded) return;
 
-    if (isVisible) {
-      videoRef.current.play().catch(() => {});
+    if (isVisible && active) {
+      video.play().catch(() => {});
     } else {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
+      video.pause();
+      if (!isVisible) video.currentTime = 0;
     }
-  }, [isVisible]);
+  }, [isVisible, active, loaded]);
 
   return (
     <motion.div
@@ -72,11 +80,12 @@ const HeroCard = ({ user, index, onNext }) => {
       <div className="relative h-[65%] w-full overflow-hidden">
         <video
           ref={videoRef}
-          src={user.video}
+          src={loaded ? user.video : undefined}
+          poster={loaded ? user.poster : undefined}
           muted
           loop
           playsInline
-          preload="auto"
+          preload={loaded ? "auto" : "none"}
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>

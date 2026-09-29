@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import feed from "../assets/phonescreen.png"; // adjust path if needed
+import feed from "../assets/phonescreen.webp";
 import ScrollScale from "./ScrollScale";
 
 const AppPreview = () => {
@@ -42,6 +42,10 @@ const AppPreview = () => {
       <motion.img
         src={feed}
         alt="App UI Preview"
+        loading="lazy"
+        decoding="async"
+        width={280}
+        height={573}
         initial={{
           opacity: 0,
           y: 80,

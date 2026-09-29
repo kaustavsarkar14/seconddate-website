@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import HeroCard from "./HeroCard";
 
 const initialUsers = [
@@ -11,6 +11,7 @@ const initialUsers = [
     religion: "Hindu",
     swipes: 128,
     video: require("../assets/videos/girl1.mp4"),
+    poster: require("../assets/videos/posters/girl1.webp"),
     interests: ["🎧 Music", "☕ Coffee", "✈️ Travel"],
   },
   {
@@ -21,6 +22,7 @@ const initialUsers = [
     religion: "Christian",
     swipes: 142,
     video: require("../assets/videos/boy1.mp4"),
+    poster: require("../assets/videos/posters/boy1.webp"),
     interests: ["📸 Photography", "🌿 Nature"],
   },
   {
@@ -31,6 +33,7 @@ const initialUsers = [
     religion: "Hindu",
     swipes: 110,
     video: require("../assets/videos/girl2.mp4"),
+    poster: require("../assets/videos/posters/girl2.webp"),
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
@@ -41,6 +44,7 @@ const initialUsers = [
     religion: "Hindu",
     swipes: 94,
     video: require("../assets/videos/boy2.mp4"),
+    poster: require("../assets/videos/posters/boy2.webp"),
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
   {
@@ -51,6 +55,7 @@ const initialUsers = [
     religion: "Muslim",
     swipes: 110,
     video: require("../assets/videos/girl3.mp4"),
+    poster: require("../assets/videos/posters/girl3.webp"),
     interests: ["📖 Reading", "🎨 Art", "☕ Café hopping"],
   },
   {
@@ -61,12 +66,16 @@ const initialUsers = [
     religion: "Hindu",
     swipes: 94,
     video: require("../assets/videos/boy3.mp4"),
+    poster: require("../assets/videos/posters/boy3.webp"),
     interests: ["🏋️ Gym", "🎮 Gaming", "🍔 Food"],
   },
 ];
 
 const HeroCards = () => {
   const [users, setUsers] = useState(initialUsers);
+  // Videos only load/play once the cards are on screen (saves bandwidth for visitors who never scroll here)
+  const ref = useRef(null);
+  const nearScreen = useInView(ref, { margin: "0px" });
 
   const rotateCards = () => {
     setUsers((prev) => {
@@ -77,14 +86,16 @@ const HeroCards = () => {
     });
   };
 
-  // Optional auto rotation
+  // Auto rotation, paused while off-screen
   useEffect(() => {
+    if (!nearScreen) return;
     const id = setInterval(rotateCards, 5000);
     return () => clearInterval(id);
-  }, []);
+  }, [nearScreen]);
 
   return (
     <motion.div
+      ref={ref}
       className="relative flex items-center justify-center
         w-[240px] h-[380px]
         md:w-[320px] md:h-[520px]
@@ -102,6 +113,7 @@ const HeroCards = () => {
           key={user.id}
           user={user}
           index={index}
+          active={nearScreen}
           onNext={rotateCards}
         />
       ))}

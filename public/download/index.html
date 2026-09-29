@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#ff356e" />
+  <title>Opening Play Store… | Second Date</title>
+  <!-- No-JS fallback -->
+  <meta http-equiv="refresh" content="2;url=https://play.google.com/store/apps/details?id=com.bongdate.bongDate" />
+  <!--
+    Standalone page (served before the React app) so the Instagram /download link costs ~2 KB
+    instead of loading the whole site just to redirect.
+  -->
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #ff356e 0%, #ff5b4c 70%, #ff7335 100%);
+      color: #fff; padding: 16px; box-sizing: border-box;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; animation: pulse 1.4s ease-in-out infinite; }
+    p { font-size: 14px; margin: 0; opacity: .9; }
+    a { color: #fff; font-weight: 700; }
+    @keyframes pulse { 50% { opacity: .55; } }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Opening Play Store…</h1>
+    <p>If it doesn't open automatically, <a id="link" href="https://play.google.com/store/apps/details?id=com.bongdate.bongDate">tap here</a>.</p>
+  </div>
+
+  <script>
+    // Vercel Web Analytics: keeps /download visits (Instagram clicks) in the dashboard
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+
+    var PLAY_STORE = "https://play.google.com/store/apps/details?id=com.bongdate.bongDate";
+    var done = false;
+    function go() {
+      if (done) return;
+      done = true;
+      window.location.replace(PLAY_STORE);
+    }
+    // Give the analytics script a moment to record the visit, but never hold the user long
+    setTimeout(go, 1200);
+  </script>
+  <script defer src="/_vercel/insights/script.js" onload="setTimeout(go, 250)" onerror="go()"></script>
+</body>
+</html>
